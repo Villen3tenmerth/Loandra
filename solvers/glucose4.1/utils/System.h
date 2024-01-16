@@ -25,6 +25,7 @@ OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWA
 #include <fpu_control.h>
 #endif
 
+#include <chrono>
 #include "mtl/IntTypes.h"
 
 //-------------------------------------------------------------------------------------------------
@@ -60,8 +61,10 @@ static inline double Glucose::cpuTime(void) {
 
 // Laurent: I know that this will not compile directly under Windows... sorry for that
 static inline double Glucose::realTime() {
-    struct timeval tv;
-    gettimeofday(&tv, NULL);
-    return (double)tv.tv_sec + (double) tv.tv_usec / 1000000; }
+    unsigned long milliseconds_since_epoch =
+            std::chrono::system_clock::now().time_since_epoch() /
+            std::chrono::milliseconds(1);
+    return (double)milliseconds_since_epoch;
+}
 
 #endif

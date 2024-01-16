@@ -29,7 +29,11 @@
 #define __PB_PARSER__
 
 #include <fcntl.h>
-#include <sys/mman.h>
+#ifdef _WIN32
+  #include "windows/mman.h"
+#else
+  #include <sys/mman.h>
+#endif
 #include <sys/stat.h>
 #include <sys/types.h>
 

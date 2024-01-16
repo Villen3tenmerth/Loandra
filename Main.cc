@@ -33,7 +33,7 @@
 #include "utils/System.h"
 #include <errno.h>
 #include <signal.h>
-#include <zlib.h>
+#include "zlib/zlib.h"
 
 
 #include <fstream>
@@ -202,7 +202,7 @@ int main(int argc, char **argv) {
       exit(_ERROR_);
     }
 
-    signal(SIGXCPU, SIGINT_exit);
+//    signal(SIGXCPU, SIGINT_exit);
     signal(SIGTERM, SIGINT_exit);
 
     if (argc == 1) {

@@ -63,7 +63,7 @@ int ParserPB::parse(char *fileName) {
   cout << "c File size is " << statbuf.st_size << " bytes." << endl;
 
   if ((_fileStr = (char *)mmap(0, statbuf.st_size, PROT_READ, MAP_SHARED, _fd,
-                               0)) == (caddr_t)-1) {
+                               0)) == (void*)-1) {
     cout << "c Error: Unable to put in memory file " << fileName << endl;
     printf("s UNKNOWN\n");
     exit(_ERROR_);
